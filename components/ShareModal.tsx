@@ -51,7 +51,7 @@ const ShareModal = ({
           disabled={currentUserType !== "editor"}
         >
           <Image
-            src="/assets/icons.share.svg"
+            src="/assets/icons/share.svg"
             alt="share"
             width={20}
             height={20}
@@ -81,8 +81,13 @@ const ShareModal = ({
             />
             <UserTypeSelector userType={userType} setUserType={setUserType} />{" "}
           </div>
-          <Button type="submit" onClick={shareDocumentHandler} className="gradient-blue flex h-full gap-1 px-5" disabled={loading}>
-            {loading ? 'Sending...' : 'Invite'}
+          <Button
+            type="submit"
+            onClick={shareDocumentHandler}
+            className="gradient-blue flex h-full gap-1 px-5"
+            disabled={loading}
+          >
+            {loading ? "Sending..." : "Invite"}
           </Button>
         </div>
 
