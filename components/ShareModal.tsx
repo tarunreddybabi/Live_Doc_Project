@@ -27,7 +27,7 @@ const ShareModal = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-
+  console.log(collaborators, "collab");
   const [userType, setUserType] = useState<UserType>("viewer");
 
   const shareDocumentHandler = async () => {

@@ -15,13 +15,22 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
 
   if (!room) redirect("/");
 
-  const userIds=Object.keys(room.usersAccesses)
-  const users=await getClerkUsers({userIds})
-  const usersData=users.map((user:User)=>({
-...user,userType:room.usersAccesses[user.email]?.includes("room:write")?"editor":"viewer"
-  }))
+  const userIds = Object.keys(room.usersAccesses);
+  const users = await getClerkUsers({ userIds });
 
-  const currentUserType=room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes("room:write")?"editor":"viewer"
+  const usersData = users?.filter((user: User | null) => user !== null) 
+  .map((user: User) => ({
+    ...user,
+    userType: room.usersAccesses[user?.email]?.includes("room:write") 
+      ? "editor"
+      : "viewer",
+  }));
+
+  const currentUserType = room.usersAccesses[
+    clerkUser.emailAddresses[0].emailAddress
+  ]?.includes("room:write")
+    ? "editor"
+    : "viewer";
 
   return (
     <main className="flex flex-col w-full items-center">
