@@ -1,6 +1,5 @@
 "use client";
-import { useSelf } from "@liveblocks/react/suspense";
-import { useState } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -9,6 +8,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import { useSelf } from "@liveblocks/react/suspense";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { Label } from "./ui/label";
@@ -19,15 +21,16 @@ import { updateDocumentAccess } from "@/lib/actions/room.actions";
 
 const ShareModal = ({
   roomId,
-  currentUserType,
   collaborators,
   creatorId,
+  currentUserType,
 }: ShareDocumentDialogProps) => {
   const user = useSelf();
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const [email, setEmail] = useState("");
-  console.log(collaborators, "collab");
   const [userType, setUserType] = useState<UserType>("viewer");
 
   const shareDocumentHandler = async () => {
@@ -57,7 +60,7 @@ const ShareModal = ({
             height={20}
             className="min-w-4 md:size-5"
           />
-          <p className="mr-1 hidedn sm:block">Share</p>
+          <p className="mr-1 hidden sm:block">Share</p>
         </Button>
       </DialogTrigger>
       <DialogContent className="shad-dialog">
@@ -67,6 +70,7 @@ const ShareModal = ({
             Select which users can view and edit this document
           </DialogDescription>
         </DialogHeader>
+
         <Label htmlFor="email" className="mt-6 text-blue-100">
           Email address
         </Label>
@@ -79,7 +83,7 @@ const ShareModal = ({
               onChange={(e) => setEmail(e.target.value)}
               className="share-input"
             />
-            <UserTypeSelector userType={userType} setUserType={setUserType} />{" "}
+            <UserTypeSelector userType={userType} setUserType={setUserType} />
           </div>
           <Button
             type="submit"

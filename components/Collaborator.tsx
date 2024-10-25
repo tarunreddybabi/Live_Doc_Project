@@ -37,6 +37,7 @@ const Collaborator = ({
 
     setLoading(false);
   };
+  
 
   return (
     <li className="flex items-center justify-between gap-2 py-3">
